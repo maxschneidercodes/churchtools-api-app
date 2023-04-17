@@ -64,20 +64,22 @@ function addPerson() {
 
     // Problem
     // Wenn ich eine neue Person hinzufügen möchte bekomme ich einen 400 Error
-    // Ich verstehe nicht wie die neue Person übergeben werden soll.
 
-    ctClient.post("/persons", {
-        "lastName": "asdasdasd",
-        "email": "adasd123@church.com",
-        "departmentIds": [
-            1
-        ],
-        "privacyPolicyAgreement": {
-            "date": "2023-04-17",
-            "typeId": 1,
-            "whoId": 1
-        },
-    }).then((result) => {
+    ctClient.post("/persons?force=true&without_privacy_policy_agreement=false",
+        {
+
+            "firstName": "asdad",
+            "lastName": "afasfaff",
+            "email": "gasdfds@gmail.com",
+            "departmentIds": [
+                0
+            ], "privacyPolicyAgreement": {
+                "typeId": 1,
+                "whoId": 2
+            }
+
+        }
+    ).then((result) => {
         console.log(result)
     }).catch(err => {
         console.log(err)

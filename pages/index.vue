@@ -20,20 +20,17 @@
 </template>
 
 <script setup lang="ts">
-import paginationPersons from "../lib/pagination"
 import churchtoolsClient from "~/store/churchToolsApi";
 
-let allPersons: any = []
 const showSpinner = ref(false)
 const errorObjc = ref({ hasError: false, msg: "" })
 const persons = ref()
 const page = ref(1)
 
-function fetchPersons() {
+function fetchPerson() {
   showSpinner.value = true
-  churchtoolsClient.get("/persons?page=1&limit=20").then((data: any) => {
-    allPersons = data
-    persons.value = paginationPersons(page.value, allPersons)
+  churchtoolsClient.get(`/persons?page=${page.value}&limit=12`).then((data: any) => {
+    persons.value = data
     showSpinner.value = false
     //@ts-ignore 
   }).catch(err => {
@@ -45,17 +42,17 @@ function fetchPersons() {
 
 function next() {
   page.value++
-  persons.value = paginationPersons(page.value, allPersons)
+  persons.value = fetchPerson()
 }
 
 function previous() {
   if (page.value > 1) {
     page.value--
-    persons.value = paginationPersons(page.value, allPersons)
+    persons.value = fetchPerson()
   }
 }
 
 onMounted(() => {
-  fetchPersons()
+  fetchPerson()
 })
 </script>
