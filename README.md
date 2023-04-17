@@ -23,14 +23,14 @@ Ich habe leider die `POST /persons` Schnittstelle nicht implementieren können, 
 
 
 ## Welche Ideen gibt es, die Webanwendung noch zu verbessern?
-Ich möchte auf jeden Fall herausfinden, warum die beiden `API Schnittstellen (POST /persons` nicht funktioniert haben.
+Ich möchte auf jeden Fall herausfinden, warum die `API Schnittstelle POST /persons` nicht funktioniert hat.
 Des Weiteren möchte ich die Anwendung noch was `UX freundlicher` machen.
-Ich würde sehr gerne noch `JEST` Tests schreiben.
+Ich würde sehr gerne noch `JEST` Tests schreiben und noch etwas Refactoring.
 
 ## Auf welchen Teil des Codes bin ich besonders stolz?
 Mir hat die Entwicklung der `Paginierung` und der einzelnen `Components` sehr viel Spaß gemacht.
 Ich bin stolz drauf, dass der `Code` lesbar und einfach zu verstehen ist.
-Mir hat das Projekt sehr Spaß gemacht, aber ich war leider etwas enttäuscht, dass ich die beiden Api Routes nicht ins Laufen bekommen habe.
+Mir hat das Projekt sehr Spaß gemacht, aber ich war leider etwas enttäuscht, dass ich die POST /persons nicht ins Laufen bekommen habe.
 
 
 # Bilder von der Anwendung
