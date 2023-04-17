@@ -48,7 +48,6 @@
 
 <script setup lang="ts">
 import ctClient from "../store/churchToolsApi"
-import Person from '~/types/Person';
 
 let uniqid = Date.now();
 const firstName = ref()
@@ -63,11 +62,10 @@ const station = ref()
 function addPerson() {
 
     // Problem
-    // Wenn ich eine neue Person hinzufügen möchte bekomme ich einen 400 Error
+    // Wenn ich eine neue Person hinzufügen möchte bekomme ich einen 500 Error
 
     ctClient.post("/persons?force=true&without_privacy_policy_agreement=false",
         {
-
             "firstName": "asdad",
             "lastName": "afasfaff",
             "email": "gasdfds@gmail.com",
@@ -77,7 +75,6 @@ function addPerson() {
                 "typeId": 1,
                 "whoId": 2
             }
-
         }
     ).then((result) => {
         console.log(result)

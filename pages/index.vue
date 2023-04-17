@@ -32,7 +32,6 @@ function fetchPerson() {
   churchtoolsClient.get(`/persons?page=${page.value}&limit=12`).then((data: any) => {
     persons.value = data
     showSpinner.value = false
-    //@ts-ignore 
   }).catch(err => {
     errorObjc.value.msg = "Es ist ein fehler aufgetreten: " + err
     errorObjc.value.hasError = true
