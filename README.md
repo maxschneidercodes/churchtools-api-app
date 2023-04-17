@@ -30,3 +30,6 @@ Ich würde gerne noch die fetch `GET /persons` cachen, sodass man nicht immer wi
 Mir hat die Entwicklung der `Paginierung` und der einzelnen `Components` sehr viel Spaß gemacht.
 Ich bin stolz drauf, dass der `Code` lesbar und einfach zu verstehen ist.
 Mir hat das Projekt sehr Spaß gemacht, aber ich war leider etwas enttäuscht, dass ich die beiden Api Routes nicht ins Laufen bekommen habe.
+
+![Bildschirmfoto 2023-04-17 um 21 15 24](https://user-images.githubusercontent.com/45995648/232588416-89dc0632-9fe8-457f-827b-88bc13d89130.png)
+
