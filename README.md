@@ -19,8 +19,6 @@ Ich habe `Bootstrap 5` verwendet, da es sehr einfach zu bedienen ist und man sch
 
 ## Welche Schwierigkeiten gab es bei der Implementierung?
 Ich habe leider die `POST /persons` Schnittstelle nicht implementieren können, da ich nicht herausgefunden habe, wie man dem `ctClient.post` das Neue Personen Objekt richtig übergibt.
-Zudem hat die `PATCH /persons/id` mir einen `403 Error` geliefert und ich konnte somit die Personen Update auch nicht fertigstellen.
-Nach sehr viel herumprobieren habe ich aufgegeben, da die vorgegebene Zeit sich dem Ende neigte.
 
 ## Welche Ideen gibt es, die Webanwendung noch zu verbessern?
 Ich möchte auf jeden Fall herausfinden, warum die beiden `API Schnittstellen (POST /persons & PATCH /persons/id)` nicht funktioniert haben.
