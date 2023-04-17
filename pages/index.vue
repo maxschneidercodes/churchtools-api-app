@@ -22,8 +22,8 @@
 </template>
 
 <script setup lang="ts">
-import ctClient from "../store/churchToolsApi"
 import paginationPersons from "../lib/pagination"
+import churchtoolsClient from "~/store/churchToolsApi";
 
 let allPersons: any = []
 const showSpinner = ref(false)
@@ -33,10 +33,13 @@ const page = ref(1)
 
 function fetchPersons() {
   showSpinner.value = true
-  ctClient.get("/persons").then((data) => {
+
+
+  churchtoolsClient.get("/persons").then((data: any) => {
     allPersons = data
     persons.value = paginationPersons(page.value, allPersons)
     showSpinner.value = false
+    //@ts-ignore 
   }).catch(err => {
     errorObjc.value.msg = "Es ist ein fehler aufgetreten: " + err
     errorObjc.value.hasError = true

@@ -1,18 +1,14 @@
-import { churchtoolsClient } from "@churchtools/churchtools-client";
-const ChurchToolsClient = churchtoolsClient.ChurchToolsClient;
+import { churchtoolsClient, activateLogging } from '@churchtools/churchtools-client';
+import { wrapper } from 'axios-cookiejar-support';
+import tough from 'tough-cookie';
 
-const clientA = new ChurchToolsClient();
-clientA.setBaseUrl('https://jobs.church.tools/');
+churchtoolsClient.setCookieJar(wrapper, new tough.CookieJar());
+churchtoolsClient.setBaseUrl('https://jobs.church.tools');
 
-clientA.post('/login', {
-    username: "churchtools",
-    password: "Jobs2022"
-}).then(result => {
-    //@ts-ignore
-    if (result.status === 'success') {
-        console.log('Login to ChurchTools-Api successful!');
-    }
-})
+activateLogging();
+churchtoolsClient.get('/whoami').then(whoAmI => {
+    console.dir(whoAmI);
+});
 
 
-export default clientA
+export default churchtoolsClient
