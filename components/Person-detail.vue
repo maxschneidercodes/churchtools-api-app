@@ -1,5 +1,26 @@
+
+<template>
+    <h1>Person Detail </h1>
+    <div class="card p-4 shadow-lg">
+        <div v-if="errorObjc.hasError">
+            <p>{{ errorObjc.msg }}</p>
+        </div>
+        <div v-else>
+            <img class="" :src="person.imageUrl" alt="person Image">
+            <h1 class="mt-2">{{ person.firstName }} {{ person.lastName }}</h1>
+            <p> <strong>Email:</strong> {{ person.email }}</p>
+            <p> <strong>Mobile:</strong> {{ person.mobile }}</p>
+            <p> <strong>Adress:</strong> {{ person.street }}</p>
+            <p> <strong>Gender:</strong> {{ gender }}</p>
+            <p> <strong>Status: </strong> {{ status }}</p>
+            <p> <strong>Station: </strong> {{ campus }}</p>
+            <PersonNuxtLink linkTo='/update/' :person="person" text="update" />
+        </div>
+    </div>
+</template>
+
 <script setup lang="ts">
-import ChurchToolsClient from "../store/churchToolsApi"
+import ctClient from "../store/churchToolsApi"
 import Person from "../types/Person"
 
 const props = defineProps<{
@@ -9,12 +30,16 @@ const { person } = toRefs(props);
 let fieldsData: any = []
 const gender = ref()
 const status = ref()
+const campus = ref()
 const errorObjc = ref({ hasError: false, msg: "" })
 
-ChurchToolsClient.get("/fields").then((data) => {
+ctClient.get("/fields").then((data) => {
+
     fieldsData = data
-    console.log(fieldsData)
     gender.value = getGender()
+    status.value = getStatus()
+    campus.value = getStation()
+
 }).catch(err => {
     errorObjc.value.msg = "Es ist ein fehler aufgetreten: " + err
     errorObjc.value.hasError = true
@@ -30,25 +55,15 @@ function getGender() {
 function getStatus() {
     let data = fieldsData.filter((item: any) => item.key === "statusId")
     let options = data[0].options
-    let filterData = options.filter((item: any) => item.id == person.value.sexId)
+    let filterData = options.filter((item: any) => item.id == person.value.statusId)
     return filterData[0].name
 }
-</script>
 
-<template>
-    <h1>Person Detail </h1>
-    <div class="container">
-        <div v-if="errorObjc.hasError">
-            <p>{{ errorObjc.msg }}</p>
-        </div>
-        <div v-else>
-            <img class="" :src="person.imageUrl" alt="person Image">
-            <h1 class="mt-2">{{ person.firstName }} {{ person.lastName }}</h1>
-            <p> <strong>Email:</strong> {{ person.email }}</p>
-            <p> <strong>Mobile:</strong> {{ person.mobile }}</p>
-            <p> <strong>Adress:</strong> {{ person.street }}</p>
-            <p> <strong>Gender:</strong> {{ gender }}</p>
-            <p> <strong>Status: </strong> {{ status }}</p>
-        </div>
-    </div>
-</template>
+function getStation() {
+    let data = fieldsData.filter((item: any) => item.key === "campusId")
+    let options = data[0].options
+    let filterData = options.filter((item: any) => item.id == person.value.campusId)
+    return filterData[0].name
+}
+
+</script>

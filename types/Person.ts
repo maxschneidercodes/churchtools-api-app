@@ -3,9 +3,10 @@ export default interface Person {
     firstName: string,
     lastName: string,
     email: string,
-    imageUrl: string,
+    imageUrl?: string,
     mobile: string,
     street: string,
     sexId: number,
     statusId: number
+    campusId: number,
 }

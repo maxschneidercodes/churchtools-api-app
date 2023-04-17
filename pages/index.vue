@@ -1,14 +1,15 @@
-
 <template>
   <h1>Persons</h1>
-  <div v-if="showSpinner">
-    <Spinner />
-  </div>
+
   <div v-if="errorObjc.hasError">
     <p>{{ errorObjc.msg }}</p>
   </div>
   <div v-else>
+
     <div class="row">
+      <div v-if="showSpinner">
+        <Spinner />
+      </div>
       <div class="col-md-auto" v-for="person in persons">
         <Person :person="person" />
       </div>
@@ -21,7 +22,7 @@
 </template>
 
 <script setup lang="ts">
-import ChurchToolsClient from "../store/churchToolsApi"
+import ctClient from "../store/churchToolsApi"
 import paginationPersons from "../lib/pagination"
 
 let allPersons: any = []
@@ -32,7 +33,7 @@ const page = ref(1)
 
 function fetchPersons() {
   showSpinner.value = true
-  ChurchToolsClient.get("/persons").then((data) => {
+  ctClient.get("/persons").then((data) => {
     console.log(data)
 
     //@ts-ignore

@@ -1,7 +1,7 @@
 <template>
     <div>
         <Header />
-        <div class="p-5">
+        <div class="p-5 bg-light">
             <slot />
         </div>
         <Footer />

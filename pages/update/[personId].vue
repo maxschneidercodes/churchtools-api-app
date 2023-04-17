@@ -1,5 +1,5 @@
 <template>
-    <PersonDetail :person="person" />
+    <UpdatePerson :person="person" />
 </template>
 
 <script setup lang="ts">
