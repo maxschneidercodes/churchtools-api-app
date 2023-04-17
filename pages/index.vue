@@ -1,11 +1,9 @@
 <template>
   <h1>Persons</h1>
-
   <div v-if="errorObjc.hasError">
     <p>{{ errorObjc.msg }}</p>
   </div>
   <div v-else>
-
     <div class="row">
       <div v-if="showSpinner">
         <Spinner />
@@ -33,9 +31,7 @@ const page = ref(1)
 
 function fetchPersons() {
   showSpinner.value = true
-
-
-  churchtoolsClient.get("/persons").then((data: any) => {
+  churchtoolsClient.get("/persons?page=1&limit=20").then((data: any) => {
     allPersons = data
     persons.value = paginationPersons(page.value, allPersons)
     showSpinner.value = false

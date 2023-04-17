@@ -41,7 +41,7 @@
                 <label for="exampleInputPassword1" class="form-label">Station</label>
                 <input v-bind:value="station" type="adress" class="form-control" id="exampleInputPassword1">
             </div>
-            <button type="submit" class="btn btn-primary">erstellen</button>
+            <button type="submit" class="btn btn-primary">updaten</button>
         </form>
     </div>
 </template>
@@ -49,6 +49,7 @@
 <script setup lang="ts">
 import ctClient from "../store/churchToolsApi"
 import Person from '~/types/Person';
+const router = useRouter()
 
 const props = defineProps<{
     person: Person,
@@ -65,29 +66,22 @@ const gender = ref(person.value.sexId)
 const stauts = ref(person.value.statusId)
 const station = ref(person.value.campusId)
 
+//TODO add Select sexID,statusID,campusID
+
 function updatePerson() {
-    let person: Person = {
-        id: id.value,
-        firstName: firstName.value,
-        lastName: lastName.value,
-        email: email.value,
-        mobile: mobile.value,
-        street: street.value,
-        sexId: gender.value,
-        statusId: stauts.value,
-        campusId: station.value,
-    }
-
-    let personData = JSON.stringify(person)
-    console.log(person.id)
-
-    // PROBLEM
-    // Wenn ich eine Person Updatetn möchte bekomme ich einen 403 Error
-
-    ctClient.patch("/persons/" + person.id, {
-        personData
+    ctClient.patch("/persons/" + id.value, {
+        "firstName": firstName.value,
+        "lastName": lastName.value,
+        "email": email.value,
+        "mobile": mobile.value,
+        "street": street.value,
+        "sexId": gender.value,
+        "statusId": stauts.value,
+        "campusId": station.value,
     }).then((result) => {
-        console.log(result)
+        if (result) {
+            router.push("/")
+        }
     }).catch(err => {
         console.log(err)
     })

@@ -3,7 +3,7 @@ import { wrapper } from 'axios-cookiejar-support';
 import tough from 'tough-cookie';
 
 churchtoolsClient.setCookieJar(wrapper, new tough.CookieJar());
-churchtoolsClient.setBaseUrl('https://jobs.church.tools');
+churchtoolsClient.setBaseUrl('https://jobs.church.tools/');
 
 activateLogging();
 churchtoolsClient.get('/whoami').then(whoAmI => {

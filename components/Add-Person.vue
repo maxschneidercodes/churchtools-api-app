@@ -67,12 +67,16 @@ function addPerson() {
     // Ich verstehe nicht wie die neue Person übergeben werden soll.
 
     ctClient.post("/persons", {
-        id: uniqid,
-        firstName: firstName.value,
-        lastName: lastName.value,
-        email: email.value,
-        mobile: mobile.value,
-        street: street.value,
+        "lastName": "asdasdasd",
+        "email": "adasd123@church.com",
+        "departmentIds": [
+            1
+        ],
+        "privacyPolicyAgreement": {
+            "date": "2023-04-17",
+            "typeId": 1,
+            "whoId": 1
+        },
     }).then((result) => {
         console.log(result)
     }).catch(err => {
