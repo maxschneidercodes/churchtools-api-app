@@ -34,3 +34,4 @@ Mir hat das Projekt sehr Spaß gemacht, aber ich war leider etwas enttäuscht, d
 
 ![Bildschirmfoto 2023-04-17 um 21 15 24](https://user-images.githubusercontent.com/45995648/232588416-89dc0632-9fe8-457f-827b-88bc13d89130.png)
 
+![Bildschirmfoto 2023-04-17 um 21 18 28](https://user-images.githubusercontent.com/45995648/232588897-06c1bf8f-1046-4572-8abf-1bd2ad29a26f.png)
