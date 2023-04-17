@@ -7,9 +7,9 @@
 
 # Bericht
 ## Wie ist die Anwendung aufgebaut?
-### Die Anwendung fetched die Personen von der ChurchTools-Api mithilfe des `churchtoolsClient` und speichert sie dann in einem Array.
-### Das Array wird mit der Funktion `paginationPersons` reduziert, sodass auf jeder Seite nur vier Personen angezeigt werden.
-### Mit `NuxtLink` ist es möglich die Seite zu wechseln und es werden die Personen daten als Querry übergeben und dann in der neuen Seite angezeigt.
+Die Anwendung fetched die Personen von der ChurchTools-Api mithilfe des `churchtoolsClient` und speichert sie dann in einem Array.
+Das Array wird mit der Funktion `paginationPersons` reduziert, sodass auf jeder Seite nur vier Personen angezeigt werden.
+Mit `NuxtLink` ist es möglich die Seite zu wechseln und es werden die Personen daten als Querry übergeben und dann in der neuen Seite angezeigt.
 
 ## Warum wurde welches Framework eingesetzt?
 ### Ich habe mich für die Entwicklung mit `Nuxt.js` entschieden, da ich sehr erfahren in `Next.js` bin und die beiden sich sehr ähneln.
