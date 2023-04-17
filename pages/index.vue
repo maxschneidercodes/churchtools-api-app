@@ -5,6 +5,12 @@
   </div>
   <div v-else>
     <div class="row">
+      <select @change="selectFilter" class="form-select" aria-label="Default select example">
+        <option selected value="0">Interessent</option>
+        <option value="1">Freund</option>
+        <option value="3">Mitglied</option>
+        <option value="4">Löschen</option>
+      </select>
       <div v-if="showSpinner">
         <Spinner />
       </div>
@@ -26,10 +32,11 @@ const showSpinner = ref(false)
 const errorObjc = ref({ hasError: false, msg: "" })
 const persons = ref()
 const page = ref(1)
+const stautsFilter = ref(0)
 
 function fetchPerson() {
   showSpinner.value = true
-  churchtoolsClient.get(`/persons?page=${page.value}&limit=12`).then((data: any) => {
+  churchtoolsClient.get(`/persons?page=${page.value}&limit=12&status_ids%5B%5D=${stautsFilter.value}&status_ids%5B%5D=${stautsFilter.value}`).then((data: any) => {
     persons.value = data
     showSpinner.value = false
   }).catch(err => {
@@ -37,6 +44,11 @@ function fetchPerson() {
     errorObjc.value.hasError = true
     showSpinner.value = false
   })
+}
+
+function selectFilter(event: any) {
+  stautsFilter.value = event.target.value
+  fetchPerson()
 }
 
 function next() {

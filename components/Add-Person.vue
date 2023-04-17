@@ -64,7 +64,7 @@ function addPerson() {
     // Problem
     // Wenn ich eine neue Person hinzufügen möchte bekomme ich einen 500 Error
 
-    ctClient.post("/persons?force=true&without_privacy_policy_agreement=false",
+    ctClient.post('/persons',
         {
             "firstName": "asdad",
             "lastName": "afasfaff",
@@ -74,7 +74,10 @@ function addPerson() {
             ], "privacyPolicyAgreement": {
                 "typeId": 1,
                 "whoId": 2
-            }
+            },
+            "statusId": 3,
+            "campusId": 0,
+            "bereichId": 2
         }
     ).then((result) => {
         console.log(result)

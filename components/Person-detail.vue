@@ -40,7 +40,7 @@ const campus = ref()
 const errorObjc = ref({ hasError: false, msg: "" })
 
 ctClient.get("/fields").then((data) => {
-
+    console.log(data)
     fieldsData = data
     gender.value = getGender()
     status.value = getStatus()
@@ -53,6 +53,7 @@ ctClient.get("/fields").then((data) => {
 
 function getGender() {
     let data = fieldsData.filter((item: any) => item.key === "sexId")
+
     let options = data[0].options
     let filterData = options.filter((item: any) => item.id == person.value.sexId)
     return filterData[0].name
