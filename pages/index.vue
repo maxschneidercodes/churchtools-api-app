@@ -1,6 +1,6 @@
 
 <template>
-  <h1>ChurchTools-Api Persons App</h1>
+  <h1>Persons</h1>
   <div v-if="showSpinner">
     <Spinner />
   </div>
@@ -14,15 +14,15 @@
       </div>
     </div>
     <div>
-      <button class="btn btn-secondary m-4" @click="previous">previous Page</button>
-      <button class="btn btn-secondary mx-4" @click="next">next Page</button>
+      <button class="btn btn-secondary m-4" @click="previous">zurück</button>
+      <button class="btn btn-secondary mx-4" @click="next">nächste Seite</button>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import ChurchToolsClient from "../store/churchToolsApi"
-import paginationPersons from "../store/persons"
+import paginationPersons from "../lib/pagination"
 
 let allPersons: any = []
 const showSpinner = ref(false)
@@ -53,7 +53,7 @@ function next() {
 }
 
 function previous() {
-  if (page.value > 0) {
+  if (page.value > 1) {
     page.value--
     persons.value = paginationPersons(page.value, allPersons)
   }

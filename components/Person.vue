@@ -8,7 +8,6 @@ defineProps<{
 
 <template>
     <div class="card m-4" style="width: 20rem;">
-        <img class="card-img-top" :src="person.imageUrl" alt="person Image">
         <div class="card-body">
             <h5 class="card-title">{{ person.firstName }} {{ person.lastName }}</h5>
             <p class="card-text">{{ person.email }}</p>
@@ -16,6 +15,13 @@ defineProps<{
                 path: '/' + person.id,
                 query: {
                     id: person.id,
+                    sexId: person.sexId,
+                    firstName: person.firstName,
+                    lastName: person.lastName,
+                    email: person.email,
+                    imageUrl: person.imageUrl,
+                    mobile: person.mobile,
+                    street: person.street,
                 }
             }">details</NuxtLink>
         </div>
