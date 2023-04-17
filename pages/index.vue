@@ -1,0 +1,65 @@
+
+<template>
+  <h1>ChurchTools-Api Persons App</h1>
+  <div v-if="showSpinner">
+    <Spinner />
+  </div>
+  <div v-if="errorObjc.hasError">
+    <p>{{ errorObjc.msg }}</p>
+  </div>
+  <div v-else>
+    <div class="row">
+      <div class="col-md-auto" v-for="person in persons">
+        <Person :person="person" />
+      </div>
+    </div>
+    <div>
+      <button class="btn btn-secondary m-4" @click="previous">previous Page</button>
+      <button class="btn btn-secondary mx-4" @click="next">next Page</button>
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+import ChurchToolsClient from "../store/churchToolsApi"
+import paginationPersons from "../store/persons"
+
+let allPersons: any = []
+const showSpinner = ref(false)
+const errorObjc = ref({ hasError: false, msg: "" })
+const persons = ref()
+const page = ref(1)
+
+function fetchPersons() {
+  showSpinner.value = true
+  ChurchToolsClient.get("/persons").then((data) => {
+    console.log(data)
+
+    //@ts-ignore
+    allPersons = data
+    persons.value = paginationPersons(page.value, allPersons)
+    showSpinner.value = false
+
+  }).catch(err => {
+    errorObjc.value.msg = "Es ist ein fehler aufgetreten: " + err
+    errorObjc.value.hasError = true
+    showSpinner.value = false
+  })
+}
+
+function next() {
+  page.value++
+  persons.value = paginationPersons(page.value, allPersons)
+}
+
+function previous() {
+  if (page.value > 0) {
+    page.value--
+    persons.value = paginationPersons(page.value, allPersons)
+  }
+}
+
+onMounted(() => {
+  fetchPersons()
+})
+</script>
