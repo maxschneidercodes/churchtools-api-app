@@ -1,7 +1,7 @@
 <template>
     <h1 class="display-4 mb-4">Person Updaten</h1>
     <div class="card shadow-sm p-4">
-        <form @submit.prevent="addPerson">
+        <form @submit.prevent="updatePerson">
             <div class="row mb-4">
                 <div class="col">
                     <div class="mb-3">
@@ -43,7 +43,6 @@
             </div>
             <button type="submit" class="btn btn-primary">erstellen</button>
         </form>
-        <button @click.prevent="addPerson" class="btn btn-primary">test</button>
     </div>
 </template>
 
@@ -51,25 +50,24 @@
 import ctClient from "../store/churchToolsApi"
 import Person from '~/types/Person';
 
-let uniqid = Date.now();
-const firstName = ref()
-const lastName = ref()
-const email = ref()
-const mobile = ref()
-const street = ref()
-const gender = ref()
-const stauts = ref()
-const station = ref()
+const props = defineProps<{
+    person: Person,
+}>();
+const { person } = toRefs(props);
 
-function addPerson() {
-    // TODO
-    // BUG? 
-    // Wenn ich eine neue Person hinzufügen möchte bekomme ich einen 500 Error
-    // Auch auf der Webseite beim Testen https://jobs.church.tools/api
-    // SERVER ERROR 500 
+const id = ref(person.value.id)
+const firstName = ref(person.value.firstName)
+const lastName = ref(person.value.lastName)
+const email = ref(person.value.email)
+const mobile = ref(person.value.mobile)
+const street = ref(person.value.street)
+const gender = ref(person.value.sexId)
+const stauts = ref(person.value.statusId)
+const station = ref(person.value.campusId)
 
+function updatePerson() {
     let person: Person = {
-        id: uniqid,
+        id: id.value,
         firstName: firstName.value,
         lastName: lastName.value,
         email: email.value,
@@ -81,16 +79,18 @@ function addPerson() {
     }
 
     let personData = JSON.stringify(person)
-    console.log(person)
+    console.log(person.id)
 
-    ctClient.patch("/persons",
-        {
-            personData
-        }).then((result) => {
-            console.log(result)
-        }).catch(err => {
-            console.log(err)
-        })
+    // PROBLEM
+    // Wenn ich eine Person Updatetn möchte bekomme ich einen 403 Error
+
+    ctClient.patch("/persons/" + person.id, {
+        personData
+    }).then((result) => {
+        console.log(result)
+    }).catch(err => {
+        console.log(err)
+    })
 }
 
 </script>

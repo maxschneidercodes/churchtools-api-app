@@ -5,5 +5,4 @@ function paginationPersons(page: Number, persons: Person[]) {
     return newPersonsArray
 }
 
-
 export default paginationPersons

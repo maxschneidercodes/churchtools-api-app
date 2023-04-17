@@ -14,7 +14,13 @@
             <p> <strong>Gender:</strong> {{ gender }}</p>
             <p> <strong>Status: </strong> {{ status }}</p>
             <p> <strong>Station: </strong> {{ campus }}</p>
-            <PersonNuxtLink linkTo='/update/' :person="person" text="update" />
+            <NuxtLink class="btn btn-primary" :to="{
+                path: '/update', query: {
+                    id: String(person.id), sexId: person.sexId, statusId:
+                        person.statusId, campusId: person.campusId, firstName: person.firstName, lastName: person.lastName, email:
+                        person.email, imageUrl: person.imageUrl, mobile: person.mobile, street: person.street,
+                }
+            }"> updaten </NuxtLink>
         </div>
     </div>
 </template>

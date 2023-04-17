@@ -10,7 +10,7 @@ const route = useRoute()
 const person: Person = {
     firstName: String(route.query.firstName),
     lastName: String(route.query.lastName),
-    id: Number(route.params.id),
+    id: Number(route.query.id),
     email: String(route.query.email),
     imageUrl: String(route.query.imageUrl),
     street: String(route.query.street),

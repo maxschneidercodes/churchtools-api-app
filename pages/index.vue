@@ -34,13 +34,9 @@ const page = ref(1)
 function fetchPersons() {
   showSpinner.value = true
   ctClient.get("/persons").then((data) => {
-    console.log(data)
-
-    //@ts-ignore
     allPersons = data
     persons.value = paginationPersons(page.value, allPersons)
     showSpinner.value = false
-
   }).catch(err => {
     errorObjc.value.msg = "Es ist ein fehler aufgetreten: " + err
     errorObjc.value.hasError = true

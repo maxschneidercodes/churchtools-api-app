@@ -43,7 +43,6 @@
             </div>
             <button type="submit" class="btn btn-primary">erstellen</button>
         </form>
-        <button @click.prevent="addPerson" class="btn btn-primary">test</button>
     </div>
 </template>
 
@@ -62,84 +61,23 @@ const stauts = ref()
 const station = ref()
 
 function addPerson() {
-    // TODO
-    // BUG? 
-    // Wenn ich eine neue Person hinzufügen möchte bekomme ich einen 500 Error
-    // Auch auf der Webseite beim Testen https://jobs.church.tools/api
-    // SERVER ERROR 500 
 
-    let person: Person = {
+    // Problem
+    // Wenn ich eine neue Person hinzufügen möchte bekomme ich einen 400 Error
+    // Ich verstehe nicht wie die neue Person übergeben werden soll.
+
+    ctClient.post("/persons", {
         id: uniqid,
         firstName: firstName.value,
         lastName: lastName.value,
         email: email.value,
         mobile: mobile.value,
         street: street.value,
-        sexId: gender.value,
-        statusId: stauts.value,
-        campusId: station.value,
-    }
-
-    console.log(person)
-
-    ctClient.post("/persons",
-        {
-            "addressAddition": "string",
-            "baptisedBy": "string",
-            "birthName": "string",
-            "birthday": "2023-04-17",
-            "birthplace": "string",
-            "campusId": 0,
-            "city": "string",
-            "cmsUserId": "string",
-            "country": "string",
-            "dateOfBaptism": "2023-04-17",
-            "dateOfBelonging": "2023-04-17",
-            "dateOfEntry": "2023-04-17T12:49:36.557Z",
-            "dateOfResign": "2023-04-17T12:49:36.557Z",
-            "departmentIds": [
-                0
-            ],
-            "email": "max@gmail.com",
-            "emails": [
-                {
-                    "contactLabelId": 2,
-                    "email": "max@gmail.com",
-                    "isDefault": true
-                }
-            ],
-            "familyStatusId": 0,
-            "fax": "string",
-            "firstContact": "2023-04-17T12:49:36.557Z",
-            "firstName": "Alfred",
-            "growPathId": 0,
-            "job": "string",
-            "lastName": "API Tester",
-            "mobile": "string",
-            "nationalityId": 3,
-            "nickname": "string",
-            "optigemId": 0,
-            "phonePrivate": "string",
-            "phoneWork": "string",
-            "placeOfBaptism": "string",
-            "privacyPolicyAgreement": {
-                "date": "2023-04-17",
-                "typeId": 1,
-                "whoId": 1
-            },
-            "referredBy": "string",
-            "referredTo": "string",
-            "sexId": 1,
-            "statusId": 5,
-            "street": "string",
-            "title": "string",
-            "weddingDate": "2023-04-17",
-            "zip": "string"
-        }).then((result) => {
-            console.log(result)
-        }).catch(err => {
-            console.log(err)
-        })
+    }).then((result) => {
+        console.log(result)
+    }).catch(err => {
+        console.log(err)
+    })
 }
 
 </script>
