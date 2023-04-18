@@ -44,7 +44,7 @@ function fetchPerson() {
     persons.value = data
     setCachedPersons(data)
     showSpinner.value = false
-    showToast(Toast.SUCCESS, "Personen Erfolgreich Geladen.")
+    showToast(Toast.SUCCESS, "Personen Erfolgreich Gefetched.")
   }).catch(err => {
     errorObjc.value.msg = "Es ist ein fehler aufgetreten: " + err
     errorObjc.value.hasError = true
