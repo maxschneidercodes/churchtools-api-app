@@ -25,8 +25,7 @@ Ich habe `Bootstrap 5` verwendet, da es sehr einfach zu bedienen ist und man sch
 
 
 ## Welche Schwierigkeiten gab es bei der Implementierung?
-Ich habe leider die `POST /persons` Schnittstelle nicht implementieren können, da ich immer einen Error Code 500 bekommen habe.
-![Bildschirmfoto 2023-04-17 um 20 34 46](https://user-images.githubusercontent.com/45995648/232588580-713fffb0-caa2-433c-951d-229fd7102f08.png)
+Ich hatte leider einige Schwierigkeiten mit den Api Endpoints da ich beim Login mit dem `churchtoolsClient` einen fehler gemacht habe.
 
 
 ## Welche Ideen gibt es, die Webanwendung noch zu verbessern?
