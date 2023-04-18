@@ -36,6 +36,10 @@ Mir hat die Entwicklung der `Paginierung` und der einzelnen `Components` sehr vi
 Ich bin stolz drauf, dass der `Code` lesbar und einfach zu verstehen ist und das ich einen `cache` eingebaut habe.
 
 
+# Video von der Anwendung
+
+https://user-images.githubusercontent.com/45995648/232782948-4f023d59-852b-42b0-8096-04ed9e66e432.mp4
+
 
 # Bilder von der Anwendung
 
