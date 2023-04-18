@@ -42,10 +42,11 @@ Mir hat das Projekt sehr Spaß gemacht, aber ich war leider etwas enttäuscht, d
 
 # Bilder von der Anwendung
 
-![Bildschirmfoto 2023-04-17 um 23 01 21](https://user-images.githubusercontent.com/45995648/232610028-1822a68f-3aa1-4731-a6ad-1353b3bba9ea.png)
 ![Bildschirmfoto 2023-04-18 um 14 04 23](https://user-images.githubusercontent.com/45995648/232779478-3f76ba1e-e701-4e47-b45b-b07e287644b6.png)
 
 ![Bildschirmfoto 2023-04-18 um 14 35 20](https://user-images.githubusercontent.com/45995648/232779455-e512d70f-a92a-46c7-952b-e57531e2471b.png)
 
-![Bildschirmfoto 2023-04-17 um 21 19 37](https://user-images.githubusercontent.com/45995648/232589195-8b2257bf-f164-4767-b405-b874188812ca.png)
+![Bildschirmfoto 2023-04-18 um 14 34 51](https://user-images.githubusercontent.com/45995648/232779607-59ffa510-2eac-42e5-ae29-e198f62aef78.png)
+
+![Bildschirmfoto 2023-04-18 um 14 04 31](https://user-images.githubusercontent.com/45995648/232779629-1199daaa-229e-4367-97b0-3b078e1f0123.png)
 
