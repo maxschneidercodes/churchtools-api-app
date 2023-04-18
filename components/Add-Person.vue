@@ -48,6 +48,8 @@
 
 <script setup lang="ts">
 import ctClient from "../lib/ctConnect"
+import { Toast } from "~/types/Toast";
+import showToast from "~/lib/toastWrapper";
 
 let uniqid = Date.now();
 const firstName = ref()
@@ -80,8 +82,9 @@ function addPerson() {
         }
     ).then((result) => {
         console.log(result)
+        showToast(Toast.SUCCESS, "Erfolgreich Hinzugefügt")
     }).catch(err => {
-        console.log(err)
+        showToast(Toast.ERROR, "Error: " + err)
     })
 }
 

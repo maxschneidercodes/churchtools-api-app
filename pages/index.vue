@@ -5,8 +5,8 @@
   </div>
   <div v-else>
     <div class="row">
-      <select @change="selectFilter" class="form-select" aria-label="Default select example">
-        <option selected value="0">Interessent</option>
+      <select @change="selectFilter" v-model="stautsFilter" class="form-select" aria-label="Default select example">
+        <option value="0">Interessent</option>
         <option value="1">Freund</option>
         <option value="3">Mitglied</option>
         <option value="4">Löschen</option>
@@ -30,13 +30,15 @@ import churchtoolsClient from "~/lib/ctConnect"
 import ctLogin from "../lib/ctLogin"
 import showToast from "~/lib/toastWrapper";
 import { Toast } from "../types/Toast"
-import { cachedPersons, setCachedPersons } from "../store/cachedPersons"
+import { cachedPersons, setCachedPersons, cachedSelectState, setCachedSelectState } from "../store/cachedPersons"
+const route = useRoute()
+const router = useRouter()
 
 const showSpinner = ref(false)
 const errorObjc = ref({ hasError: false, msg: "" })
 const persons = ref()
 const page = ref(1)
-const stautsFilter = ref(0)
+const stautsFilter = ref(cachedSelectState)
 
 function fetchPerson() {
   showSpinner.value = true
@@ -54,16 +56,20 @@ function fetchPerson() {
 }
 
 function getCachedPersons() {
-  if (cachedPersons.length > 0) {
+  const fetchAgain = route.query.fetch
+  if (cachedPersons.length > 0 && !fetchAgain) {
     persons.value = cachedPersons
     showToast(Toast.SUCCESS, "Personen Erfolgreich aus dem cache geladen.")
   } else {
+    router.replace({ query: {} })
     fetchPerson()
   }
 }
 
 function selectFilter(event: any) {
-  stautsFilter.value = event.target.value
+  const filter = event.target.value
+  stautsFilter.value = filter
+  setCachedSelectState(filter)
   fetchPerson()
 }
 

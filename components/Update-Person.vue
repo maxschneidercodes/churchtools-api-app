@@ -47,8 +47,11 @@
 </template>
 
 <script setup lang="ts">
+import showToast from "~/lib/toastWrapper";
 import ctClient from "../lib/ctConnect"
 import Person from '~/types/Person';
+import { Toast } from "~/types/Toast";
+
 const router = useRouter()
 
 const props = defineProps<{
@@ -80,10 +83,11 @@ function updatePerson() {
         "campusId": station.value,
     }).then((result) => {
         if (result) {
-            router.push("/")
+            showToast(Toast.SUCCESS, "Erfolgreich Geupdatet.")
+            router.push({ path: '/', query: { fetch: 'true' } })
         }
     }).catch(err => {
-        console.log(err)
+        showToast(Toast.ERROR, "Error: " + err)
     })
 }
 
