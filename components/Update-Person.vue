@@ -53,12 +53,10 @@ import Person from '~/types/Person';
 import { Toast } from "~/types/Toast";
 
 const router = useRouter()
-
 const props = defineProps<{
     person: Person,
 }>();
 const { person } = toRefs(props);
-
 const id = ref(person.value.id)
 const firstName = ref(person.value.firstName)
 const lastName = ref(person.value.lastName)

@@ -51,7 +51,7 @@ import ctClient from "../lib/ctConnect"
 import { Toast } from "~/types/Toast";
 import showToast from "~/lib/toastWrapper";
 
-let uniqid = Date.now();
+const router = useRouter()
 const firstName = ref()
 const lastName = ref()
 const email = ref()
@@ -62,28 +62,24 @@ const stauts = ref()
 const station = ref()
 
 function addPerson() {
-
-    // Problem
-    // Wenn ich eine neue Person hinzufügen möchte bekomme ich einen 500 Error
-
     ctClient.post('/persons',
         {
-            "firstName": "asdad",
-            "lastName": "afasfaff",
-            "email": "gasdfds@gmail.com",
-            "departmentIds": [
-                0
-            ], "privacyPolicyAgreement": {
-                "typeId": 1,
-                "whoId": 2
-            },
-            "statusId": 3,
-            "campusId": 0,
+            "firstName": firstName.value,
+            "lastName": lastName.value,
+            "email": email.value,
+            "mobile": mobile.value,
+            "campusId": station.value,
+            "adress": street.value,
+            "departmentIds": [1],
+            "statusId": stauts.value,
+            "privacyPolicyAgreement": { "typeId": 1, "whoId": 1 }
         }
     ).then((result) => {
         console.log(result)
         showToast(Toast.SUCCESS, "Erfolgreich Hinzugefügt")
+        router.push({ path: '/', query: { fetch: 'true' } })
     }).catch(err => {
+        console.log(err)
         showToast(Toast.ERROR, "Error: " + err)
     })
 }
