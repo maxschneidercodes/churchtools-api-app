@@ -56,22 +56,34 @@ export async function getGenderFor(person: any) {
     let data = await getFieldsData()
     let filteredData = data.filter((item: any) => item.key === FieldTypes.SEX_ID)
     let options = filteredData[0].options
-    let filterData = options.filter((item: any) => item.id == person.value.sexId)
-    return filterData[0].name
+    let optionsData = options.filter((item: any) => item.id == person.value.sexId)
+    if (filteredData.length > 0 && optionsData.length > 0) {
+        return optionsData[0].name
+    } else {
+        return ""
+    }
 }
 
 export async function getStatusFor(person: any) {
     let data = await getFieldsData()
     let filteredData = data.filter((item: any) => item.key === FieldTypes.STATUS_ID)
     let options = filteredData[0].options
-    let filterData = options.filter((item: any) => item.id == person.value.statusId)
-    return filterData[0].name
+    let optionsData = options.filter((item: any) => item.id == person.value.statusId)
+    if (filteredData.length > 0 && optionsData.length > 0) {
+        return optionsData[0].name
+    } else {
+        return ""
+    }
 }
 
 export async function getStationFor(person: any) {
     let data = await getFieldsData()
     let filteredData = data.filter((item: any) => item.key === FieldTypes.CAMPUS_ID)
     let options = filteredData[0].options
-    let filterData = options.filter((item: any) => item.id == person.value.campusId)
-    return filterData[0].name
+    let optionsData = options.filter((item: any) => item.id == person.value.campusId)
+    if (filteredData.length > 0 && optionsData.length > 0) {
+        return optionsData[0].name
+    } else {
+        return ""
+    }
 }

@@ -1,61 +1,67 @@
 <template>
-    <h1 class="display-4 mb-4">Person Hinzufügen</h1>
-    <div class="card shadow-sm p-4">
-        <form @submit.prevent="addPerson">
-            <div class="row mb-4">
-                <div class="col">
-                    <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Firstname</label>
-                        <input v-model="firstName" type="name" class="form-control" id="firstname">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-4">
+            <h1 class="display-4 mb-4">Person Hinzufügen</h1>
+            <div class="card shadow-sm p-4">
+                <form @submit.prevent="addPerson">
+                    <div class="row mb-4">
+                        <div class="col">
+                            <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">Firstname</label>
+                                <input v-model="firstName" type="name" class="form-control" id="firstname">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="mb-3">
+                                <label for="exampleInputPassword1" class="form-label">Lastname</label>
+                                <input v-model="lastName" type="name" class="form-control">
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="col">
                     <div class="mb-3">
-                        <label for="exampleInputPassword1" class="form-label">Lastname</label>
-                        <input v-model="lastName" type="name" class="form-control">
+                        <label for="exampleInputPassword1" class="form-label">Email</label>
+                        <input v-model="email" type="email" class="form-control">
                     </div>
-                </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Mobile</label>
+                        <input v-model="mobile" type="phone" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Adress</label>
+                        <input v-model="street" type="adress" class="form-control">
+                    </div>
+                    <div class="mb-3">
+
+                        <label for="exampleInputPassword1" class="form-label">Genders</label>
+                        <select v-model="selectedGender" class="form-select">
+                            <option v-for="option in genders" :value="option.id">
+                                {{ option.name }}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Stauts</label>
+                        <select v-model="selectedStatus" class="form-select">
+                            <label for="exampleInputPassword1" class="form-label">Statuse</label>
+                            <option v-for="option in status" :value="option.id">
+                                {{ option.name }}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Station</label>
+                        <select v-model="selectedStation" class="form-select">
+                            <label for="exampleInputPassword1" class="form-label">Genders</label>
+                            <option v-for="option in station" :value="option.id">
+                                {{ option.name }}
+                            </option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">erstellen</button>
+                </form>
             </div>
-            <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Email</label>
-                <input v-model="email" type="email" class="form-control">
-            </div>
-            <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Mobile</label>
-                <input v-model="mobile" type="phone" class="form-control">
-            </div>
-            <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Adress</label>
-                <input v-model="street" type="adress" class="form-control">
-            </div>
-            <div class="mb-3">
-                <select v-model="selectedGender" class="form-select">
-                    <label for="exampleInputPassword1" class="form-label">Genders</label>
-                    <option v-for="option in genders" :value="option.value">
-                        {{ option.text }}
-                    </option>
-                </select>
-            </div>
-            <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Stauts</label>
-                <select v-model="selectedGender" class="form-select">
-                    <label for="exampleInputPassword1" class="form-label">Statuse</label>
-                    <option v-for="option in status" :value="option.value">
-                        {{ option.text }}
-                    </option>
-                </select>
-            </div>
-            <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Station</label>
-                <select v-model="selectedGender" class="form-select">
-                    <label for="exampleInputPassword1" class="form-label">Genders</label>
-                    <option v-for="option in station" :value="option.value">
-                        {{ option.text }}
-                    </option>
-                </select>
-            </div>
-            <button type="submit" class="btn btn-primary">erstellen</button>
-        </form>
+        </div>
     </div>
 </template>
 
@@ -78,10 +84,6 @@ const status = ref()
 const selectedStation = ref()
 const station = ref()
 
-genders.value = await getGenderFields()
-status.value = await getStatusFields()
-station.value = await getStationFields()
-
 function addPerson() {
     ctClient.post('/persons',
         {
@@ -90,7 +92,8 @@ function addPerson() {
             "email": email.value,
             "mobile": mobile.value,
             "campusId": selectedStation.value,
-            "adress": street.value,
+            "street": street.value,
+            "sexId": selectedGender.value,
             "departmentIds": [1],
             "statusId": selectedStatus.value,
             "privacyPolicyAgreement": { "typeId": 1, "whoId": 1 }
@@ -104,4 +107,10 @@ function addPerson() {
         showToast(Toast.ERROR, "Error: " + err)
     })
 }
+
+onMounted(async () => {
+    genders.value = await getGenderFields()
+    status.value = await getStatusFields()
+    station.value = await getStationFields()
+})
 </script>

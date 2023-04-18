@@ -34,6 +34,7 @@ const gender = ref()
 const status = ref()
 const campus = ref()
 
+
 gender.value = await getGenderFor(person)
 status.value = await getStatusFor(person)
 campus.value = await getStationFor(person)
