@@ -6,40 +6,53 @@
                 <div class="col">
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Firstname</label>
-                        <input v-model="firstName" type="name" class="form-control" id="firstname"
-                            aria-describedby="emailHelp">
+                        <input v-model="firstName" type="name" class="form-control" id="firstname">
                     </div>
                 </div>
                 <div class="col">
                     <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label">Lastname</label>
-                        <input v-model="lastName" type="name" class="form-control" id="exampleInputPassword1">
+                        <input v-model="lastName" type="name" class="form-control">
                     </div>
                 </div>
             </div>
             <div class="mb-3">
                 <label for="exampleInputPassword1" class="form-label">Email</label>
-                <input v-model="email" type="email" class="form-control" id="exampleInputPassword1">
+                <input v-model="email" type="email" class="form-control">
             </div>
             <div class="mb-3">
                 <label for="exampleInputPassword1" class="form-label">Mobile</label>
-                <input v-model="mobile" type="phone" class="form-control" id="exampleInputPassword1">
+                <input v-model="mobile" type="phone" class="form-control">
             </div>
             <div class="mb-3">
                 <label for="exampleInputPassword1" class="form-label">Adress</label>
-                <input v-model="street" type="adress" class="form-control" id="exampleInputPassword1">
+                <input v-model="street" type="adress" class="form-control">
             </div>
             <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Gender</label>
-                <input v-model="gender" type="name" class="form-control" id="exampleInputPassword1">
+                <select v-model="selectedGender" class="form-select">
+                    <label for="exampleInputPassword1" class="form-label">Genders</label>
+                    <option v-for="option in genders" :value="option.value">
+                        {{ option.text }}
+                    </option>
+                </select>
             </div>
             <div class="mb-3">
                 <label for="exampleInputPassword1" class="form-label">Stauts</label>
-                <input v-model="stauts" type="adress" class="form-control" id="exampleInputPassword1">
+                <select v-model="selectedGender" class="form-select">
+                    <label for="exampleInputPassword1" class="form-label">Statuse</label>
+                    <option v-for="option in status" :value="option.value">
+                        {{ option.text }}
+                    </option>
+                </select>
             </div>
             <div class="mb-3">
                 <label for="exampleInputPassword1" class="form-label">Station</label>
-                <input v-bind:value="station" type="adress" class="form-control" id="exampleInputPassword1">
+                <select v-model="selectedGender" class="form-select">
+                    <label for="exampleInputPassword1" class="form-label">Genders</label>
+                    <option v-for="option in station" :value="option.value">
+                        {{ option.text }}
+                    </option>
+                </select>
             </div>
             <button type="submit" class="btn btn-primary">erstellen</button>
         </form>
@@ -50,6 +63,7 @@
 import ctClient from "../lib/ctConnect"
 import { Toast } from "~/types/Toast";
 import showToast from "~/lib/toastWrapper";
+import { getGenderFields, getStatusFields, getStationFields } from "../lib/ctFields"
 
 const router = useRouter()
 const firstName = ref()
@@ -57,9 +71,16 @@ const lastName = ref()
 const email = ref()
 const mobile = ref()
 const street = ref()
-const gender = ref()
-const stauts = ref()
+const selectedGender = ref()
+const genders = ref()
+const selectedStatus = ref()
+const status = ref()
+const selectedStation = ref()
 const station = ref()
+
+genders.value = await getGenderFields()
+status.value = await getStatusFields()
+station.value = await getStationFields()
 
 function addPerson() {
     ctClient.post('/persons',
@@ -68,10 +89,10 @@ function addPerson() {
             "lastName": lastName.value,
             "email": email.value,
             "mobile": mobile.value,
-            "campusId": station.value,
+            "campusId": selectedStation.value,
             "adress": street.value,
             "departmentIds": [1],
-            "statusId": stauts.value,
+            "statusId": selectedStatus.value,
             "privacyPolicyAgreement": { "typeId": 1, "whoId": 1 }
         }
     ).then((result) => {
@@ -83,5 +104,4 @@ function addPerson() {
         showToast(Toast.ERROR, "Error: " + err)
     })
 }
-
 </script>
