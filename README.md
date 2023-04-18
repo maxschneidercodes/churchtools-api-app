@@ -27,17 +27,15 @@ Ich habe `Bootstrap 5` verwendet, da es sehr einfach zu bedienen ist und man sch
 ## Welche Schwierigkeiten gab es bei der Implementierung?
 Ich hatte leider einige Schwierigkeiten mit den Api Endpoints da ich beim Login mit dem `churchtoolsClient` einen fehler gemacht habe.
 
-
 ## Welche Ideen gibt es, die Webanwendung noch zu verbessern?
-Ich möchte auf jeden Fall herausfinden, warum die `API Schnittstelle POST /persons` nicht funktioniert hat.
 Des Weiteren möchte ich die Anwendung noch was `UX freundlicher` machen.
 Ich würde sehr gerne noch `JEST` Tests schreiben und noch etwas Refactoring.
 
 
 ## Auf welchen Teil des Codes bin ich besonders stolz?
 Mir hat die Entwicklung der `Paginierung` und der einzelnen `Components` sehr viel Spaß gemacht.
-Ich bin stolz drauf, dass der `Code` lesbar und einfach zu verstehen ist.
-Mir hat das Projekt sehr Spaß gemacht, aber ich war leider etwas enttäuscht, dass ich die POST /persons nicht zum Laufen bekommen habe.
+Ich bin stolz drauf, dass der `Code` lesbar und einfach zu verstehen ist und das ich einen `cach` eingebaut habe.
+
 
 
 # Bilder von der Anwendung
