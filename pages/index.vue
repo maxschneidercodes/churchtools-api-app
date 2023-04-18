@@ -34,6 +34,17 @@ const persons = ref()
 const page = ref(1)
 const stautsFilter = ref(0)
 
+const config = useRuntimeConfig()
+let username = config.public.churchToolsUserName
+let password = config.public.churchtoolsPassword
+
+churchtoolsClient.post("/login", {
+  username: username,
+  password: password
+}).then((res => {
+  console.log(res)
+})).catch(err => console.error(err))
+
 function fetchPerson() {
   showSpinner.value = true
   churchtoolsClient.get(`/persons?page=${page.value}&limit=12&status_ids%5B%5D=${stautsFilter.value}&status_ids%5B%5D=${stautsFilter.value}`).then((data: any) => {

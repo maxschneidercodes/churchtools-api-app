@@ -2,13 +2,11 @@ import { churchtoolsClient, activateLogging } from '@churchtools/churchtools-cli
 import { wrapper } from 'axios-cookiejar-support';
 import tough from 'tough-cookie';
 
-churchtoolsClient.setCookieJar(wrapper, new tough.CookieJar());
-churchtoolsClient.setBaseUrl('https://jobs.church.tools/');
+const ChurchToolsClient = churchtoolsClient.ChurchToolsClient;
+const clientA = new ChurchToolsClient();
 
-activateLogging();
-churchtoolsClient.get('/whoami').then(whoAmI => {
-    console.dir(whoAmI);
-});
+clientA.setCookieJar(wrapper, new tough.CookieJar());
+clientA.setBaseUrl('https://jobs.church.tools');
 
 
-export default churchtoolsClient
+export default clientA

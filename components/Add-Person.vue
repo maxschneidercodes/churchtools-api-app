@@ -77,7 +77,6 @@ function addPerson() {
             },
             "statusId": 3,
             "campusId": 0,
-            "bereichId": 2
         }
     ).then((result) => {
         console.log(result)
