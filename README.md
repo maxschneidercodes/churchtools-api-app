@@ -1,10 +1,14 @@
 # ChurchtTools Api Test App
 
 ## Anwendung Starten
-### 1. Login Church Tools -> https://jobs.church.tools/
-### 2. gh repo clone maxschneidercodes/ct-api-app
-### 3. npm install
-### 4. npm run dev
+
+1. gh repo clone maxschneidercodes/ct-api-app
+2. .env file in root Hinzufügen
+3. Folgende env Variablen mit entsprechenden Werten Hinzufügen 
+`NUXT_CHURCH_TOOLS_USERNAME=<churchtools-username>`
+`NUXT_CHURCH_TOOLS_PASSWORD=<churchtools-password>`
+4. npm install
+5. npm run dev
 
 
 # Bericht
