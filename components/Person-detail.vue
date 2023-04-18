@@ -26,7 +26,7 @@
 </template>
 
 <script setup lang="ts">
-import ctClient from "../store/churchToolsApi"
+import ctClient from "../lib/ctConnect"
 import Person from "../types/Person"
 
 const props = defineProps<{

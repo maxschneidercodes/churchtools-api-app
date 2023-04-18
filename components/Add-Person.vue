@@ -47,7 +47,7 @@
 </template>
 
 <script setup lang="ts">
-import ctClient from "../store/churchToolsApi"
+import ctClient from "../lib/ctConnect"
 
 let uniqid = Date.now();
 const firstName = ref()

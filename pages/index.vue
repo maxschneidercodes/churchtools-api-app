@@ -26,24 +26,14 @@
 </template>
 
 <script setup lang="ts">
-import churchtoolsClient from "~/store/churchToolsApi";
+import churchtoolsClient from "~/lib/ctConnect"
+import ctLogin from "../lib/ctLogin"
 
 const showSpinner = ref(false)
 const errorObjc = ref({ hasError: false, msg: "" })
 const persons = ref()
 const page = ref(1)
 const stautsFilter = ref(0)
-
-const config = useRuntimeConfig()
-let username = config.public.churchToolsUserName
-let password = config.public.churchtoolsPassword
-
-churchtoolsClient.post("/login", {
-  username: username,
-  password: password
-}).then((res => {
-  console.log(res)
-})).catch(err => console.error(err))
 
 function fetchPerson() {
   showSpinner.value = true
@@ -75,6 +65,8 @@ function previous() {
 }
 
 onMounted(() => {
-  fetchPerson()
+  ctLogin(() => {
+    fetchPerson()
+  })
 })
 </script>
