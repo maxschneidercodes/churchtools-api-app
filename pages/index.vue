@@ -28,6 +28,9 @@
 <script setup lang="ts">
 import churchtoolsClient from "~/lib/ctConnect"
 import ctLogin from "../lib/ctLogin"
+import showToast from "~/lib/toastWrapper";
+import { Toast } from "../types/Toast"
+import { cachedPersons, setCachedPersons } from "../store/cachedPersons"
 
 const showSpinner = ref(false)
 const errorObjc = ref({ hasError: false, msg: "" })
@@ -39,12 +42,24 @@ function fetchPerson() {
   showSpinner.value = true
   churchtoolsClient.get(`/persons?page=${page.value}&limit=12&status_ids%5B%5D=${stautsFilter.value}&status_ids%5B%5D=${stautsFilter.value}`).then((data: any) => {
     persons.value = data
+    setCachedPersons(data)
     showSpinner.value = false
+    showToast(Toast.SUCCESS, "Personen Erfolgreich Geladen.")
   }).catch(err => {
     errorObjc.value.msg = "Es ist ein fehler aufgetreten: " + err
     errorObjc.value.hasError = true
     showSpinner.value = false
+    showToast(Toast.ERROR, "Fehler beim Fetchen der Personen: " + err)
   })
+}
+
+function getCachedPersons() {
+  if (cachedPersons.length > 0) {
+    persons.value = cachedPersons
+    showToast(Toast.SUCCESS, "Personen Erfolgreich aus dem cache geladen.")
+  } else {
+    fetchPerson()
+  }
 }
 
 function selectFilter(event: any) {
@@ -66,7 +81,7 @@ function previous() {
 
 onMounted(() => {
   ctLogin(() => {
-    fetchPerson()
+    getCachedPersons()
   })
 })
 </script>

@@ -1,4 +1,7 @@
 import churchtoolsClient from "~/lib/ctConnect";
+import showToast from "./toastWrapper";
+import { Toast } from "~/types/Toast";
+
 
 function login(callback: () => void) {
     const config = useRuntimeConfig()
@@ -11,10 +14,12 @@ function login(callback: () => void) {
     }).then((res => {
         //@ts-ignore
         if (res.status === 'success') {
-            console.log('Login successful!');
+            showToast(Toast.SUCCESS, "ChurchTools Login Erfolgreich.")
             callback()
         }
-    })).catch(err => console.error(err))
+    })).catch(err => {
+        showToast(Toast.ERROR, "ChurchTools Login Fehlgeschlagen : " + err)
+    })
 }
 
 export default login

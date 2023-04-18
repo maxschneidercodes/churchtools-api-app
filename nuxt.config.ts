@@ -7,13 +7,11 @@ export default defineNuxtConfig({
         },
 
     },
-    css: ["bootstrap/dist/css/bootstrap.min.css"],
+    css: ["bootstrap/dist/css/bootstrap.min.css", 'vue-toast-notification/dist/theme-default.css'],
     runtimeConfig: {
         public: {
-            apiKey: process.env.NUXT_CHURCH_TOOLS_LOGIN_TOKEN,
             churchToolsUserName: process.env.NUXT_CHURCH_TOOLS_USERNAME,
             churchtoolsPassword: process.env.NUXT_CHURCH_TOOLS_PASSWORD
         }
-    }
-
+    },
 })
